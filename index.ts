@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 const app = express();
 const port = 5000;
-import authRoutes from "./routes/auth";
-import taskRoutes from "./routes/task";
-import calendarRoutes from "./routes/calendar";
+const authRoutes = require("./routes/auth");
+const taskRoutes = require("./routes/task");
+const calendarRoutes = require("./routes/calendar");
 import { connectToDb } from "./config/db";
 require("dotenv").config();
 

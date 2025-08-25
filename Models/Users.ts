@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import bcrypt from "bcrypt";
 
 interface user {
   username: string;
@@ -32,6 +33,14 @@ const userSchema: Schema<user> = new Schema({
     default: tasksStatus.PENDING.toLocaleString(),
   },
   list: [{ type: mongoose.Schema.Types.ObjectId, ref: "TaskList" }],
+});
+
+userSchema.pre("save", async function (next) {
+  const user = this;
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, 10);
+  }
+  next();
 });
 
 export const Users = mongoose.model("Users", userSchema);
