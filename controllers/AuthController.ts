@@ -1,0 +1,43 @@
+import { Request, Response } from "express";
+import { Users } from "../Models/Users";
+import jwt from "jsonwebtoken";
+
+export const Login = (req: any, res: Response) => {
+  const { email, password } = req.body;
+  const loggedInUser = req.user;
+  console.log("Logging in user with email:", loggedInUser.email);
+
+  res.send({
+    email: email,
+    message: "User logged in successfully",
+  });
+};
+
+export const Register = async (req: Request, res: Response) => {
+  console.log(req.body);
+  const { email, password, username, gender, dateOfBirth } = req.body;
+  const user = await Users.create({
+    email,
+    password,
+    username,
+    gender,
+    dateOfBirth,
+  });
+  console.log("Registering user with email:", email);
+  const token = jwt.sign(
+    {
+      id: user._id,
+      email: user.email,
+    },
+    process.env.JWT_SECRET as string,
+    {
+      expiresIn: "10minutes",
+    }
+  );
+  res.send({
+    email: user.email,
+    token: token,
+    password: user.password,
+    message: "User registered successfully",
+  });
+};
