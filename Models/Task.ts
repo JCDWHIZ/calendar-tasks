@@ -32,7 +32,7 @@ const taskSchema: Schema<Task> = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
+    required: false,
   },
   repeat: {
     type: Boolean,
