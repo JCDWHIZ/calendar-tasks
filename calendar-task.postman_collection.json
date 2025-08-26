@@ -1,0 +1,323 @@
+{
+	"info": {
+		"_postman_id": "72cc67ee-a214-4a26-b279-9bdcc6d954a1",
+		"name": "calendar-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30123754"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"token = jsonData[\"token\"]\r",
+									"\r",
+									"// // pm.collectionVariables.set(\"token\", \"variable_value\");\r",
+									"pm.collectionVariables.set(\"accessToken\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"xcnmvxciwef@asd.sds\",\r\n  \"password\": \"s\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{authRoute}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{authRoute}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"xcnmvxciwef@asd.sds\",\r\n  \"password\": \"s\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{authRoute}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{authRoute}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "263"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"107-wzLBZ1KQFEYudcn1Y15bFNY9MQM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Aug 2025 13:33:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YWM2YWU4NGExYjEwMzk3NmMwZmFlNyIsImVtYWlsIjoieGNubXZ4Y2l3ZWZAYXNkLnNkcyIsImlhdCI6MTc1NjIxNTE4OSwiZXhwIjoxNzU2MjE1Nzg5fQ.VOXcvDPJb6XZzSHCoRkF5Q1dPEV6SFudq8zLo9vx2Cs\",\n    \"message\": \"User logged in successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"asdjahsjhkd\",\r\n  \"email\": \"askhdjka@asd.sds\",\r\n  \"password\": \"s\",\r\n  \"Gender\": \"MALE\",\r\n  \"dateOfBirth\": \"asjdhja\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{authRoute}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{authRoute}}",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": []
+		},
+		{
+			"name": "calendar",
+			"item": []
+		},
+		{
+			"name": "Create an event",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"THis is my birthday\",\r\n    \"location\": \"At my house\",\r\n    \"description\": \"bring presents\",\r\n    \"date\": \"2025-12-24\",\r\n    \"type\": \"event\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{calendarRoute}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{calendarRoute}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "225"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e1-iM5Hlqq+oRKIKGJWG3v+P53EKI4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Aug 2025 14:03:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Event created successfully\",\n    \"data\": {\n        \"title\": \"THis is my birthday\",\n        \"description\": \"bring presents\",\n        \"location\": \"At my house\",\n        \"type\": \"event\",\n        \"date\": \"2025-12-24T00:00:00.000Z\",\n        \"_id\": \"68adbeac18394a18da4fa93b\",\n        \"__v\": 0\n    }\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000",
+			"description": {
+				"content": "",
+				"type": "text/plain"
+			}
+		},
+		{
+			"key": "authRoute",
+			"value": "api/auth",
+			"description": {
+				"content": "",
+				"type": "text/plain"
+			}
+		},
+		{
+			"key": "taskRoute",
+			"value": "api/tasks",
+			"description": {
+				"content": "",
+				"type": "text/plain"
+			}
+		},
+		{
+			"key": "calendarRoute",
+			"value": "api/calendar",
+			"description": {
+				"content": "",
+				"type": "text/plain"
+			}
+		},
+		{
+			"key": "accessToken",
+			"value": ""
+		}
+	]
+}
