@@ -9,7 +9,7 @@ interface Task {
   starred: boolean;
 }
 
-enum tasksStatus {
+export enum tasksStatus {
   PENDING,
   COMPLETED,
 }

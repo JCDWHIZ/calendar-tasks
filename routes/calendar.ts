@@ -4,6 +4,7 @@ import {
   DeleteEvent,
   GetEventDetails,
   UpdateEvent,
+  PatchUpdateEvent,
 } from "../controllers/CalendarController";
 import { authenticateToken } from "../Middleware/authMiddleware";
 import validate from "../config/validation";
@@ -20,5 +21,6 @@ router
 router.route("/").get(authenticateToken, GetEventDetails);
 router.route("/:id").delete(authenticateToken, DeleteEvent);
 router.route("/:id").put(authenticateToken, UpdateEvent);
+router.route("/:id").patch(authenticateToken, PatchUpdateEvent);
 
 module.exports = router;

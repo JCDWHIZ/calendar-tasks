@@ -8,7 +8,7 @@ interface calendar {
   date: Date;
 }
 
-enum calendarType {
+export enum calendarType {
   event,
   tasks,
 }

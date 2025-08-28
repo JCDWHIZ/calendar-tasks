@@ -25,7 +25,7 @@ export const Login = async (req: any, res: Response) => {
     },
     process.env.JWT_SECRET as string,
     {
-      expiresIn: "10minutes",
+      expiresIn: "1day",
     }
   );
   res.send({

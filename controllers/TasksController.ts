@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { Tasks } from "../Models/Task";
-import { Calendar } from "../Models/Calendar";
+import { Tasks, tasksStatus } from "../Models/Task";
+import { Calendar, calendarType } from "../Models/Calendar";
 import { TaskList } from "../Models/Lists";
 
 // tasks
 export const CreateTask = async (req: Request, res: Response) => {
-  const { title, description, status, date, repeat, listId } = req.body;
+  const { title, description, date, repeat, listId } = req.body;
 
   const task = await Tasks.create({
     title,
     description,
-    status,
+    status: tasksStatus.PENDING,
     repeat,
     date,
   });
@@ -29,7 +29,7 @@ export const CreateTask = async (req: Request, res: Response) => {
       title,
       description,
       date,
-      type: "task",
+      type: calendarType.tasks,
     });
   }
 
@@ -44,6 +44,34 @@ export const UpdateTask = (req: Request, res: Response) => {};
 
 export const DeleteTask = (req: Request, res: Response) => {};
 
+export const ReassignTaskToList = async (req: Request, res: Response) => {
+  const { taskId, listId } = req.body;
+
+  const task = await Tasks.findOne({ _id: taskId });
+  if (task == null) {
+    return res.status(400).json({
+      message: "Task not found",
+    });
+  }
+
+  console.log("after task found");
+  const list = await TaskList.findOne({ _id: listId });
+  if (list == null) {
+    return res.status(400).json({
+      message: "List not found",
+    });
+  }
+  console.log("after tasklist");
+
+  list.tasks.push(task._id);
+  console.log("after tasklist task added");
+  await list.save();
+  console.log("after tasklist saved");
+
+  return res.status(200).json({
+    message: "Task reassigned succesfully",
+  });
+};
 //lists
 
 export const CreateList = async (req: Request, res: Response) => {
@@ -62,7 +90,13 @@ export const CreateList = async (req: Request, res: Response) => {
   });
 };
 
-export const GetAllLists = (req: Request, res: Response) => {};
+export const GetAllLists = async (req: Request, res: Response) => {
+  const ListWithTask = await TaskList.find().populate("tasks");
+  return res.status(200).json({
+    message: "Lists fetched succesfully",
+    data: ListWithTask,
+  });
+};
 
 export const UpdateList = (req: Request, res: Response) => {};
 

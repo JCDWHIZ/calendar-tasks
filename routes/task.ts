@@ -8,6 +8,8 @@ import {
   MarkTaskAsDone,
   UpdateList,
   UpdateTask,
+  ReassignTaskToList,
+  DeleteTask,
 } from "../controllers/TasksController";
 const router = express.Router();
 
@@ -15,6 +17,8 @@ const router = express.Router();
 router.route("/").post(authenticateToken, CreateTask);
 router.route("/mark/:id").put(authenticateToken, MarkTaskAsDone);
 router.route("/:id").put(authenticateToken, UpdateTask);
+router.route("/:id").delete(authenticateToken, DeleteTask);
+router.route("/reassign").put(authenticateToken, ReassignTaskToList);
 
 // lists
 router.route("/list").post(authenticateToken, CreateList);

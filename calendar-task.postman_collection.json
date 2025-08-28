@@ -171,27 +171,281 @@
 		},
 		{
 			"name": "Tasks",
-			"item": []
-		},
-		{
-			"name": "calendar",
-			"item": []
-		},
-		{
-			"name": "Create an event",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": [
+			"item": [
 				{
-					"name": "success",
-					"originalRequest": {
+					"name": "Lists",
+					"item": [
+						{
+							"name": "Get all list with tasks",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{taskRoute}}/lists",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{taskRoute}}",
+										"lists"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/{{taskRoute}}/lists",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"{{taskRoute}}",
+												"lists"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "Content-Length",
+											"value": "547"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"223-7iDggTLkVxf4B/Z7NNZeMsGnYDQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 28 Aug 2025 14:17:39 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Lists fetched succesfully\",\n    \"data\": [\n        {\n            \"_id\": \"68b0622d47c5e8da4573bb83\",\n            \"title\": \"List 1\",\n            \"tasks\": [\n                {\n                    \"_id\": \"68b06454b2a630319763b2a3\",\n                    \"title\": \"DO your homework\",\n                    \"description\": \"bring presents\",\n                    \"status\": \"0\",\n                    \"date\": \"2025-10-20T00:00:00.000Z\",\n                    \"repeat\": false,\n                    \"starred\": false,\n                    \"__v\": 0\n                },\n                {\n                    \"_id\": \"68b064d62ca758a570e77848\",\n                    \"title\": \"DO your homework\",\n                    \"description\": \"bring presents\",\n                    \"status\": \"0\",\n                    \"date\": \"2025-10-20T00:00:00.000Z\",\n                    \"repeat\": false,\n                    \"starred\": false,\n                    \"__v\": 0\n                }\n            ],\n            \"__v\": 2\n        },\n        {\n            \"_id\": \"68b062e5ed0ca00b23d759c5\",\n            \"title\": \"List 2\",\n            \"tasks\": [],\n            \"__v\": 0\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Create a list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"List 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{taskRoute}}/list",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{taskRoute}}",
+										"list"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"List 2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/{{taskRoute}}/list",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"{{taskRoute}}",
+												"list"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "Content-Length",
+											"value": "96"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"60-WFOZDdeJezC6WXIu7wvRI20F+V0\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 28 Aug 2025 14:08:37 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"List created succesfully\",\n    \"data\": {\n        \"id\": \"68b062e5ed0ca00b23d759c5\",\n        \"title\": \"List 2\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create a task",
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"THis is my birthday\",\r\n    \"location\": \"At my house\",\r\n    \"description\": \"bring presents\",\r\n    \"date\": \"2025-12-24\",\r\n    \"type\": \"event\"\r\n}",
+							"raw": "{\r\n    \"title\": \"DO your homework\",\r\n    \"description\": \"bring presents\",\r\n    \"date\": \"2025-10-20\", //this can be nullable\r\n    \"repeat\": false,\r\n    \"listId\": \"68b0622d47c5e8da4573bb83\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{taskRoute}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{taskRoute}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"DO your homework\",\r\n    \"description\": \"bring presents\",\r\n    \"date\": \"2025-10-20\", //this can be nullable\r\n    \"repeat\": false,\r\n    \"listId\": \"68b0622d47c5e8da4573bb83\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{taskRoute}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{taskRoute}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-qRv2Mq66T1ot1QrJVU364YIANgY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Aug 2025 14:17:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task created succesfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "calendar",
+			"item": [
+				{
+					"name": "Create an event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"THis is my birthday\",\r\n    \"location\": \"At my house\",\r\n    \"description\": \"bring presents\",\r\n    \"date\": \"ajsdhasdhk\",\r\n    \"type\": \"event\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -208,44 +462,443 @@
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "Content-Length",
-							"value": "225"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"e1-iM5Hlqq+oRKIKGJWG3v+P53EKI4\""
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 26 Aug 2025 14:03:25 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"THis is my birthday\",\r\n    \"location\": \"At my house\",\r\n    \"description\": \"bring presents\",\r\n    \"date\": \"2025-12-24\",\r\n    \"type\": \"event\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{calendarRoute}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{calendarRoute}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "225"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e1-iM5Hlqq+oRKIKGJWG3v+P53EKI4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Aug 2025 14:03:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event created successfully\",\n    \"data\": {\n        \"title\": \"THis is my birthday\",\n        \"description\": \"bring presents\",\n        \"location\": \"At my house\",\n        \"type\": \"event\",\n        \"date\": \"2025-12-24T00:00:00.000Z\",\n        \"_id\": \"68adbeac18394a18da4fa93b\",\n        \"__v\": 0\n    }\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"Event created successfully\",\n    \"data\": {\n        \"title\": \"THis is my birthday\",\n        \"description\": \"bring presents\",\n        \"location\": \"At my house\",\n        \"type\": \"event\",\n        \"date\": \"2025-12-24T00:00:00.000Z\",\n        \"_id\": \"68adbeac18394a18da4fa93b\",\n        \"__v\": 0\n    }\n}"
+					]
+				},
+				{
+					"name": "Patch update an event",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"THis is my birthday1\" // only send the field needed to update\r\n    // \"location\": \"At my house1\",\r\n    // \"description\": \"bring presents1\",\r\n    // \"date\": \"2025-11-21\",\r\n    // \"type\": \"event\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{calendarRoute}}/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{calendarRoute}}",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68b0599e57ee29b1c33b30c0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"THis is my birthday1\" // only send the field needed to update\r\n    // \"location\": \"At my house1\",\r\n    // \"description\": \"bring presents1\",\r\n    // \"date\": \"2025-11-21\",\r\n    // \"type\": \"event\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{calendarRoute}}/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{calendarRoute}}",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "68b0599e57ee29b1c33b30c0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-h3gbJ0kzgqgUt/D5cwPFKkKy4qs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Aug 2025 13:35:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"message\": \"Event updated successfully\",\n    \"data\": {\n        \"_id\": \"68b0599e57ee29b1c33b30c0\",\n        \"title\": \"THis is my birthday12\",\n        \"description\": \"bring presents1\",\n        \"location\": \"At my house1\",\n        \"type\": \"event\",\n        \"date\": \"2025-11-21T00:00:00.000Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update an event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"THis is my birthday1\",\r\n    \"location\": \"At my house1\",\r\n    \"description\": \"bring presents1\",\r\n    \"date\": \"2025-11-21\",\r\n    \"type\": \"event\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{calendarRoute}}/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{calendarRoute}}",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68b0599e57ee29b1c33b30c0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"THis is my birthday1\" // only send the field needed to update\r\n    // \"location\": \"At my house1\",\r\n    // \"description\": \"bring presents1\",\r\n    // \"date\": \"2025-11-21\",\r\n    // \"type\": \"event\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{calendarRoute}}/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{calendarRoute}}",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "68b0599e57ee29b1c33b30c0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-h3gbJ0kzgqgUt/D5cwPFKkKy4qs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Aug 2025 13:35:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"message\": \"Event updated successfully\",\n    \"data\": {\n        \"_id\": \"68b0599e57ee29b1c33b30c0\",\n        \"title\": \"THis is my birthday12\",\n        \"description\": \"bring presents1\",\n        \"location\": \"At my house1\",\n        \"type\": \"event\",\n        \"date\": \"2025-11-21T00:00:00.000Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete an event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{calendarRoute}}/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{calendarRoute}}",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68b0599e57ee29b1c33b30c0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{calendarRoute}}/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{calendarRoute}}",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "68b0599e57ee29b1c33b30c0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-wRdTlJ5aU6ll9KPBiGmQileIzOM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Aug 2025 13:47:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get all events",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{calendarRoute}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{calendarRoute}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "764"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2fc-U9cWt8DlA9PfZp4kaioxDyaaBsk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Aug 2025 13:49:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Events retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"68ac7446329ebb8bebd3dd29\",\n            \"title\": \"THis is my birthday\",\n            \"description\": \"bring presents\",\n            \"location\": \"At my house\",\n            \"type\": \"event\",\n            \"date\": \"2025-11-05T16:09:57.000Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"68ac7479329ebb8bebd3dd2b\",\n            \"title\": \"THis is my birthday\",\n            \"description\": \"bring presents\",\n            \"location\": \"At my house\",\n            \"type\": \"event\",\n            \"date\": \"2025-08-24T23:48:35.000Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"68ac74a3329ebb8bebd3dd2d\",\n            \"title\": \"THis is my birthday\",\n            \"description\": \"bring presents\",\n            \"location\": \"At my house\",\n            \"type\": \"event\",\n            \"date\": \"2025-12-24T00:00:00.000Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"68adbeac18394a18da4fa93b\",\n            \"title\": \"THis is my birthday\",\n            \"description\": \"bring presents\",\n            \"location\": \"At my house\",\n            \"type\": \"event\",\n            \"date\": \"2025-12-24T00:00:00.000Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
 				}
 			]
 		}
