@@ -219,7 +219,6 @@
 										{
 											"key": "Content-Type",
 											"value": "application/json",
-											"name": "Content-Type",
 											"description": "",
 											"type": "text"
 										},
@@ -311,7 +310,6 @@
 										{
 											"key": "Content-Type",
 											"value": "application/json",
-											"name": "Content-Type",
 											"description": "",
 											"type": "text"
 										},
@@ -403,7 +401,103 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-qRv2Mq66T1ot1QrJVU364YIANgY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Aug 2025 14:17:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task created succesfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reassign a task to list",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"listId\": \"68b062e5ed0ca00b23d759c5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{taskRoute}}/:taskId/reassign",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{taskRoute}}",
+								":taskId",
+								"reassign"
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "68b1b8b7969afae5db5e86b0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"DO your homework\",\r\n    \"description\": \"bring presents\",\r\n    \"date\": \"2025-10-20\", //this can be nullable\r\n    \"repeat\": false,\r\n    \"listId\": \"68b0622d47c5e8da4573bb83\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{taskRoute}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{taskRoute}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
 									"description": "",
 									"type": "text"
 								},

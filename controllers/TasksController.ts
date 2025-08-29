@@ -22,7 +22,10 @@ export const CreateTask = async (req: Request, res: Response) => {
     });
   }
 
+  task.listId = list._id;
   list.tasks.push(task._id);
+
+  await task.save();
   await list.save();
   if (date) {
     const calendar = await Calendar.create({
@@ -38,39 +41,58 @@ export const CreateTask = async (req: Request, res: Response) => {
   });
 };
 
-export const MarkTaskAsDone = (req: Request, res: Response) => {};
+export const MarkTaskAsDone = (req: Request, res: Response) => {
+  // update the status of the task
+};
 
 export const UpdateTask = (req: Request, res: Response) => {};
 
 export const DeleteTask = (req: Request, res: Response) => {};
 
 export const ReassignTaskToList = async (req: Request, res: Response) => {
-  const { taskId, listId } = req.body;
+  const { taskId } = req.params;
+  const { listId } = req.body;
 
-  const task = await Tasks.findOne({ _id: taskId });
-  if (task == null) {
-    return res.status(400).json({
-      message: "Task not found",
-    });
+  // Find the task
+  const task = await Tasks.findById(taskId);
+  if (!task) {
+    return res.status(404).json({ message: "Task not found" });
   }
 
-  console.log("after task found");
-  const list = await TaskList.findOne({ _id: listId });
-  if (list == null) {
-    return res.status(400).json({
-      message: "List not found",
-    });
+  // Find the new list
+  const newList = await TaskList.findById(listId);
+  if (!newList) {
+    return res.status(404).json({ message: "New list not found" });
   }
-  console.log("after tasklist");
 
-  list.tasks.push(task._id);
-  console.log("after tasklist task added");
-  await list.save();
-  console.log("after tasklist saved");
+  // Find the old list
+  const oldList = await TaskList.findById(task.listId);
+  if (oldList) {
+    oldList.tasks = oldList.tasks.filter(
+      (tId: any) => tId.toString() !== task._id.toString()
+    );
+    await oldList.save();
+  }
 
-  return res.status(200).json({
-    message: "Task reassigned succesfully",
-  });
+  // Update the task’s listId
+  task.listId = newList._id;
+  await task.save();
+
+  // Add task to the new list
+  if (!newList.tasks.includes(task._id)) {
+    newList.tasks.push(task._id);
+    await newList.save();
+  }
+
+  return res.status(200).json({ message: "Task reassigned successfully" });
+
+  // use this to study what i did
+  // we have an array of different ids but have no idea of what the index in the arrays are
+  // let array = ["id1", "id2", "id3"];
+  // console.log("this is normal arrya", array); //output: ["id1", "id2", "id3"];
+  // this filter will get all ids that is not id2 and set that as the new array value
+  // array = array.filter((id: string) => id !== "id2");
+  // console.log("this is normal arrya", array); //output: ["id1", "id3"];
 };
 //lists
 

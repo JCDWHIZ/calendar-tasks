@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 
 interface Task {
   title: string;
@@ -7,6 +7,7 @@ interface Task {
   date: Date;
   repeat: boolean;
   starred: boolean;
+  listId: Types.ObjectId;
 }
 
 export enum tasksStatus {
@@ -41,6 +42,10 @@ const taskSchema: Schema<Task> = new Schema({
   starred: {
     type: Boolean,
     default: false,
+  },
+  listId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "TaskList",
   },
 });
 

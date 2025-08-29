@@ -8,7 +8,7 @@ interface decoded {
   exp?: number;
   iat?: number;
 }
-export const authenticateToken = (
+export const authenticateToken = async (
   req: any,
   res: Response,
   next: NextFunction
@@ -26,7 +26,7 @@ export const authenticateToken = (
       process.env.JWT_SECRET as string
     ) as decoded;
     console.log("Decoded token:", decoded);
-    const user = Users.findOne({ _id: decoded.id });
+    const user = await Users.findOne({ _id: decoded.id });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });

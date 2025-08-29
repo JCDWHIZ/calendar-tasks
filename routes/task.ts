@@ -18,7 +18,7 @@ router.route("/").post(authenticateToken, CreateTask);
 router.route("/mark/:id").put(authenticateToken, MarkTaskAsDone);
 router.route("/:id").put(authenticateToken, UpdateTask);
 router.route("/:id").delete(authenticateToken, DeleteTask);
-router.route("/reassign").put(authenticateToken, ReassignTaskToList);
+router.route("/:taskId/reassign").put(authenticateToken, ReassignTaskToList);
 
 // lists
 router.route("/list").post(authenticateToken, CreateList);
