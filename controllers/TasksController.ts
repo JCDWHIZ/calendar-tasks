@@ -41,8 +41,22 @@ export const CreateTask = async (req: Request, res: Response) => {
   });
 };
 
-export const MarkTaskAsDone = (req: Request, res: Response) => {
-  // update the status of the task
+export const MarkTaskAsDone = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const task = await Tasks.findById(id);
+
+  if (!task) {
+    return res.status(404).json({
+      message: "Task not found",
+    });
+  }
+
+  task.status = tasksStatus.COMPLETED.toLocaleString();
+
+  return res.status(200).json({
+    message: "Task Done",
+  });
 };
 
 export const UpdateTask = (req: Request, res: Response) => {};

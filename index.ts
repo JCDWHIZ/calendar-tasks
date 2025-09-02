@@ -6,6 +6,7 @@ const authRoutes = require("./routes/auth");
 const taskRoutes = require("./routes/task");
 const calendarRoutes = require("./routes/calendar");
 import { connectToDb } from "./config/db";
+import { sendMail } from "./config/emailservice";
 require("dotenv").config();
 
 // app.get("/products", (req: Request, res: Response) => {
@@ -52,6 +53,8 @@ app.post(
     res.status(400).json({ errors: result.array() });
   }
 );
+
+sendMail();
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
