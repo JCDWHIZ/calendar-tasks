@@ -7,19 +7,27 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "jesseugboh@gmail.com",
-    pass: "password",
+    pass: "ivbaezcwkmajrjqs",
   },
   tls: {
     rejectUnauthorized: false,
   },
 });
 
-export const sendMail = async () => {
+export const sendForgotPasswordMail = async (
+  to: string,
+  username: string,
+  resetLink: string
+) => {
   const info = await transporter.sendMail({
     from: '"Jesse"',
-    to: "demilade228@gmail.com, azinofamous@gmail.com",
-    subject: "Hello from class ✔",
-    html: `<h1 style="background-color: red; color: blue;">Hello world?, how is your day going</h1>`,
+    to: to,
+    subject: `Dear ${username}`,
+    html: `<h1 style="background-color: red; color: blue;">
+    Hello, trus your day is going fine
+    please click this link to reset your password 
+    <a href=${resetLink}>Link here</a>
+    </h1>`,
   });
   console.log("info", info);
   console.log("Message sent:", info.messageId);

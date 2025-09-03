@@ -1,5 +1,10 @@
 import express, { Request, Response } from "express";
-import { Login, Register } from "../controllers/AuthController";
+import {
+  Login,
+  Register,
+  forgotPassword,
+  setPassword,
+} from "../controllers/AuthController";
 import { authenticateToken } from "../Middleware/authMiddleware";
 import validate from "../config/validation";
 import { body } from "express-validator";
@@ -15,5 +20,7 @@ router
   );
 
 router.route("/register").post(Register);
+router.route("/set-password").put(setPassword);
+router.route("/forgot-password").post(forgotPassword);
 
 module.exports = router;
