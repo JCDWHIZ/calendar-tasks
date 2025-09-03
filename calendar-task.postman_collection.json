@@ -42,7 +42,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"xcnmvxciwef@asd.sds\",\r\n  \"password\": \"s\"\r\n}",
+							"raw": "{\r\n  \"email\": \"jesseugboh@gmail.com\",\r\n  \"password\": \"x\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -56,6 +56,128 @@
 							],
 							"path": [
 								"{{authRoute}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"xcnmvxciwef@asd.sds\",\r\n  \"password\": \"s\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/{{authRoute}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{authRoute}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "263"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"107-wzLBZ1KQFEYudcn1Y15bFNY9MQM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Aug 2025 13:33:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YWM2YWU4NGExYjEwMzk3NmMwZmFlNyIsImVtYWlsIjoieGNubXZ4Y2l3ZWZAYXNkLnNkcyIsImlhdCI6MTc1NjIxNTE4OSwiZXhwIjoxNzU2MjE1Nzg5fQ.VOXcvDPJb6XZzSHCoRkF5Q1dPEV6SFudq8zLo9vx2Cs\",\n    \"message\": \"User logged in successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login a user Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"token = jsonData[\"token\"]\r",
+									"\r",
+									"// // pm.collectionVariables.set(\"token\", \"variable_value\");\r",
+									"pm.collectionVariables.set(\"accessToken\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"jesseugboh@gmail.com\"\r\n//   \"password\": \"s\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{authRoute}}/forgot-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{authRoute}}",
+								"forgot-password"
 							]
 						}
 					},
@@ -164,6 +286,14 @@
 								"register"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
